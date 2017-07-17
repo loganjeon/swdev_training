@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 	for ( auto s : lineString )
 	{
 		strTemp  = indent_tabTospace(s);
-		fout << strTemp << endl;;
+		fout << strTemp << endl;
 	}
 
 	fin.close();

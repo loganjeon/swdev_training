@@ -31,7 +31,7 @@ int cntKimAndLee(const vector<string>& strs_name)
 
 	for (auto s : strs_name ) {
 		f_name = s.substr(0,3);
-		
+
 		if(f_name == "김" || f_name == "이") {
 			std::cout << f_name << std::endl;
 			++cnt;
@@ -53,16 +53,48 @@ int findName(const vector<string>& strs_name, const string& nameTofind)
 	return cnt;
 }
 
+// problem 3. and problem 4.
+void printRMoverlapName(const vector<string>& strs_name)
+{
+    bool bOverlaped = false;
+    vector<string> rmOverlapName;
+
+    for (auto s1 : strs_name) {
+        for (auto s2 : rmOverlapName) {
+            if ( s1 == s2 )
+                bOverlaped = true;
+        }
+        if(!bOverlaped)
+            rmOverlapName.push_back(s1);
+        bOverlaped = false;
+    }
+
+    std::cout << "non-overlapping name : " ;
+    for (auto s : rmOverlapName)
+        std::cout << s << " ";
+    std::cout << std::endl;
+
+    // problem 4.
+    sort(rmOverlapName.begin(), rmOverlapName.end());
+
+    std::cout << "sorted non-overlaping name : " ;
+    for (auto s : rmOverlapName)
+        std::cout << s << " ";
+    std::cout << std::endl;
+}
+
 int main()
 {
 	vector<string> name_vec;
-	
+
 	for (int i=0; i < 17; i++ ) {
 		name_vec.push_back(names[i]);
 	}
-	
+
 	std::cout << "num of 김 or 이 : " << cntKimAndLee(name_vec) << std::endl;
 	std::cout << "num of 이재영 : " << findName(name_vec, "이재영") << std::endl;
-	
+
+	printRMoverlapName(name_vec);
+
 	return 0;
 }
